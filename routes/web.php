@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleGeneratorController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +30,12 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+Route::get('/write', function () {
+    $title = '';
+    $content = '';
+    return view('writer', compact('title', 'content'));
+});
+
+Route::post('/write/generate', [ArticleGeneratorController::class, 'index']);
